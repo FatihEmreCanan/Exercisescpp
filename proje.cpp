@@ -8,99 +8,85 @@ class student
 
 {
     protected:
-
+        int mathGrade1;
+        int mathGrade2;
         int studentNo;
         string name;
+        int finalGrade;
+        int sciGrade1, sciGrade2, finalScore;
+        int totalGrade;
+        int mathGrade;
+        int sciGrade;
+
 
     public:
 
-        void setNo()
+        int setNo(int sn)
         {
-            cout<<"Enter Student Number:";
-            cin>>studentNo;
+            studentNo =sn;
+            return 0;
+            
         }
-        void setName()
+        string setName(string Name)
         {
-            cout<<"Enter Student Name:";
-            cin>>name;
+            
+            name = Name;
+            return 0;
         }
-        void getNo()
+        int getNo()
         {
-            cout<<"\nStudent Number : "<<studentNo;
+            return studentNo;
 
         }
-        void getName()
+        string getName()
         {
-            cout << " \nName :"<<name;
+            return name;
         }
-};
-
-class mathTest: virtual public student
-{
-    protected:
-        float mathGrade;
-
-    public:
-        void setMathGrade()
+        void setMathGrade(int mt1, int mt2, int fin)
         {
-            cout<<"Enter Math Grade:";
-            cin>>mathGrade;
+            mathGrade1 = mt1;
+            mathGrade2 = mt2;
+            finalGrade = fin;
         }
 
-        void getMathGrade()
+        int getMathGrade()
         {
-            cout<<"\nMath Grade : "<<mathGrade;
+            return mathGrade1,mathGrade2, finalGrade;
         }
-};
-
-
-
-
-class scienceTest: public virtual student
-{
-    protected:
-        float scienceGrade;
-
-    public:
-        void setScienceGrade()
+        int letterGrade(int mathGrade1,int mathGrade2, int finalGrade){
+            mathGrade = 0.3 * (mathGrade1 +mathGrade2) + 0.4 * finalGrade;
+            return 0;
+        }    
+        int setScienceGrade(int sci1, int sci2, int scifn)
         {
-            cout<<"Enter Science Grade:";
-            cin>>scienceGrade;
+            sciGrade1 = sci1;
+            sciGrade2 = sci2;
+            finalScore = scifn;
+            return 0;
         }
 
-        void getScienceGrade()
+        int getScienceGrade()
         {
-            cout<<"\nScience Grade : "<<scienceGrade;
+            return sciGrade1, sciGrade2, finalScore;
         }
 
-};
-
-class result: public mathTest, public scienceTest
-{
-
-    int totalGrade;
-
-    public:
+        int sciLetterGrade(int sciGrade1, int sciGrade2, int finalScore){
+            sciGrade = 0.4*(sciGrade2+ sciGrade1) + 0.6 * finalScore;
+            return 0;
+        }
         void getResult()
         {
-            totalGrade=mathGrade+scienceGrade;
+            totalGrade=mathGrade+sciGrade;
             getName();
             getNo();
-            getMathGrade();
             getScienceGrade();
             cout<<"\nTotal Grade : "<<totalGrade<<"\n";
         }
 };
 
 
+
 int main()
 {
-    result R;
-    R.setName();
-    R.setNo();
-    R.setMathGrade();
-    R.setScienceGrade();
-    R.getResult();
-
     return 0;
 }
